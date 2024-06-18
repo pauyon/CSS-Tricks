@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Loading Logo</title>
+
+        <style>
+            .icon {
+                width: 400px;
+                height: 400px;
+                margin-top: 4px;
+            }
+
+            .mask {
+                background-color: blue; /* defines the background color of the image */
+                mask: url(https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/768px-Steam_icon_logo.svg.png) no-repeat center / contain;
+                -webkit-mask: url(https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/768px-Steam_icon_logo.svg.png) no-repeat center / contain;
+            }
+
+            .animation-cycle {
+                animation: revealLogo 4s infinite, fadeOut 4s infinite;
+            }
+
+            @keyframes revealLogo {
+                0% {
+                    clip-path: inset(100% 0 0 0); /* Start with fully clipped except bottom */
+                }
+
+                90% {
+                    clip-path: inset(0 0 0 0); /* Fully reveal the background */
+                }
+            }
+
+            @keyframes fadeOut {
+                0%,90% {
+                    opacity: 1; /* Start with full opacity */
+                }
+
+                100% {
+                    opacity: 0; /* Fade out to transparent */
+                }
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>Chain multiple animations (with mask)</h1>
+        <div class="icon mask animation-cycle"></div> <!-- Not working for some reason -->
+
+        <h1>Chain multiple animations (with image)</h1>
+        <img class="icon animation-cycle" src="logo.png"/>
+    </body>
+</html>
